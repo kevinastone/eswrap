@@ -8,12 +8,7 @@
   "ecmaFeatures": { "destructuring": true, "classes": true },
   "env": {
     "es6": true,
-    "node": true,
-    "mocha": true
-  },
-  "globals": {
-    "chai": true,
-    "expect": true
+    "node": true
   },
   "rules": {
     "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],

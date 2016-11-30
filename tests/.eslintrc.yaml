@@ -1,0 +1,12 @@
+extends: "../.eslintrc.json"
+env:
+  mocha: true
+
+globals:
+  chai: true
+  expect: true
+
+rules:
+  quotes: [0]
+  # needed for multi-line strings
+  no-trailing-spaces: [0]

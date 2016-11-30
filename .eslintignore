@@ -1,3 +1,4 @@
 /tests/fixtures/**
 /node_modules/**
 /docs/**
+/bin/**

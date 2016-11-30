@@ -4,7 +4,7 @@ import program from 'commander';
 import format from './index';
 
 // eslint-disable-next-line
-const packageJSON = require(join(__dirname, '..', 'package.json'));
+const packageJSON = JSON.parse(fs.readFileSync(join(__dirname, 'package.json')));
 
 const DEFAULT_LINE_LENGTH = 80;
 
