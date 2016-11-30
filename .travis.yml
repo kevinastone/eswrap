@@ -1,5 +1,9 @@
 language: node_js
-language: node_js
 node_js:
   - "node"
 cache: yarn
+before_install: npm install --global flow-bin
+script:
+  - npm run lint
+  - flow check
+  - npm test
