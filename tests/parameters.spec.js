@@ -6,7 +6,7 @@ import transform from './../index';
 
 describe('Function Parameters', () => {
   it(`shouldn't wrap lines under the length`, () => {
-    expect(transform(`func(1, 2, 3)`, 20)).toEqual(`func(1, 2, 3)`);
+    expect(transform(`func(1, 2, 3);`, 20)).toEqual(`func(1, 2, 3);`);
   });
   it('should wrap function calls', () => {
     expect(transform(`reallyLongName(firstParameter, secondParameter, thirdParameter)`, 20)).toEqual(dedent`
@@ -14,7 +14,7 @@ describe('Function Parameters', () => {
         firstParameter,
         secondParameter,
         thirdParameter,
-      )
+      );
     `);
   });
   it('should wrap function calls with assignments', () => {
@@ -23,7 +23,7 @@ describe('Function Parameters', () => {
         firstParameter,
         secondParameter,
         thirdParameter,
-      );\n
+      );
     `);
   });
 });
