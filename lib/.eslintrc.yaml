@@ -1,0 +1,6 @@
+extends: "../.eslintrc.json"
+rules:
+  # Allow param-reassign
+  no-param-reassign: [0]
+  # Allow shadowing
+  no-shadow: [0]
