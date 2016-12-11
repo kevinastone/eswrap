@@ -26,4 +26,10 @@ describe('Arrow Functions', () => {
       };
     `);
   });
+  it('should wrap block statements', () => {
+    expect(transform(`(first, second) => calculateValue();`, 30)).toEqual(dedent`
+      (first, second) =>
+        calculateValue();
+    `);
+  });
 });
