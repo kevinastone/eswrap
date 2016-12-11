@@ -9,6 +9,11 @@ describe('Literals', () => {
       expect(transform(`var a = 20;`, 20)).toEqual(`var a = 20;`);
     });
   });
+  describe('BooleanLiterals', () => {
+    it(`shouldn't wrap literals`, () => {
+      expect(transform(`var a = true;`, 20)).toEqual(`var a = true;`);
+    });
+  });
   describe('StringLiterals', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform(`var a = 'hi';`, 20)).toEqual(`var a = 'hi';`);
