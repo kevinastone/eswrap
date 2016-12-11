@@ -5,16 +5,37 @@ import dedent from 'dedent-js';
 import transform from './../index';
 
 describe('Import Declarations', () => {
-  it(`shouldn't wrap lines under the length`, () => {
-    expect(transform(`import a from 'b';`, 20)).toEqual(`import a from 'b';`);
+  describe('Import Specifiers', () => {
+    it(`shouldn't wrap lines under the length`, () => {
+      expect(transform(`import { a } from 'b';`, 30)).toEqual(`import { a } from 'b';`);
+    });
+    it(`shouldn't wrap lines under the length`, () => {
+      expect(transform(`import { a as b } from 'b';`, 30)).toEqual(`import { a as b } from 'b';`);
+    });
+    it(`should wrap long imports with destructuring`, () => {
+      expect(transform(`import { reallyLongName, anotherLongName } from 'package';`, 20)).toEqual(dedent`
+        import {
+          reallyLongName,
+          anotherLongName,
+        } from 'package';
+      `);
+    });
   });
-  it(`should wrap long imports with destructuring`, () => {
-    expect(transform(`import { reallyLongName, anotherLongName } from 'package';`, 20)).toEqual(dedent`
-      import {
-        reallyLongName,
-        anotherLongName,
-      } from 'package';
-    `);
+  describe('Default Specifiers', () => {
+    it(`shouldn't wrap default lines under the length`, () => {
+      expect(transform(`import a from 'b';`, 20)).toEqual(`import a from 'b';`);
+    });
+    it(`shouldn't wrap lines with import names`, () => {
+      expect(transform(`import 'b';`, 20)).toEqual(`import 'b';`);
+    });
+  });
+  describe('Import Namespaces', () => {
+    it(`shouldn't wrap lines with import aliases`, () => {
+      expect(transform(`import * as a from 'b';`, 30)).toEqual(`import * as a from 'b';`);
+    });
+  });
+  it(`shouldn't wrap lines with compound imports`, () => {
+    expect(transform(`import a, { b as c } from 'b';`, 30)).toEqual(`import a, { b as c } from 'b';`);
   });
 });
 

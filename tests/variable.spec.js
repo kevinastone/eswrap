@@ -14,11 +14,4 @@ describe('Variable Declarations', () => {
         secondParameter = 2;
     `);
   });
-  it('should wrap variable declarations after kind', () => {
-    expect(transform(`let firstParameterAA = 1, secondParameter = 2;`, 24)).toEqual(dedent`
-      let
-        firstParameterAA = 1,
-          secondParameter = 2;
-    `);
-  });
 });

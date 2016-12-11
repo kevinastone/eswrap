@@ -16,7 +16,8 @@ export default {
       ],
       "plugins": [
         "transform-flow-strip-types",
-        "transform-runtime"
+        "transform-runtime",
+        "inline-package-json"
       ],
       exclude: 'node_modules/**',
       runtimeHelpers: true,

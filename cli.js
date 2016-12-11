@@ -1,15 +1,13 @@
-import { join } from 'path';
 import fs from 'fs';
 import program from 'commander';
 import format from './index';
 
-// eslint-disable-next-line
-const packageJSON = JSON.parse(fs.readFileSync(join(__dirname, 'package.json')));
+const version = require('./package.json').version;
 
 const DEFAULT_LINE_LENGTH = 80;
 
 program
-  .version(packageJSON.version)
+  .version(version)
   .description('format ecmascript code')
   .option(
     '-l, --limit <cols>',
