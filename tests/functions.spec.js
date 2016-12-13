@@ -12,14 +12,14 @@ describe('Function Declarations', () => {
       `, 80)).toEqual(dedent`
         function f(a = 1, b = 2) {}
       `);
-    });    
+    });
     it(`it should handle rest arguments`, () => {
       expect(transform(dedent`
         function f(...a) {}
       `, 80)).toEqual(dedent`
         function f(...a) {}
       `);
-    });    
+    });
   });
   it(`shouldn't wrap lines under the length`, () => {
     expect(transform(`function f() {}`, 20)).toEqual(`function f() {}`);
