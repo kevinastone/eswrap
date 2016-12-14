@@ -59,6 +59,21 @@ describe('Classes', () => {
           }
         `);
       });
+      xit(`it should format class constructor with super`, () => {
+        expect(transform(dedent`
+          class Something {
+            constructor() {
+              super();
+            }
+          }
+        `, 80)).toEqual(dedent`
+          class Something {
+            constructor() {
+              super();
+            }
+          }
+        `);
+      });
       it(`it should format simple class method`, () => {
         expect(transform(dedent`
           class Something {
