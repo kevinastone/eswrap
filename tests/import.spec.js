@@ -43,4 +43,7 @@ describe('Export Declarations', () => {
   it(`shouldn't wrap lines under the length`, () => {
     expect(transform(`export default function() {};`, 30)).toEqual(`export default function() {};`);
   });
+  it(`shouldn't wrap lines under the length`, () => {
+    expect(transform(`export function blah() {};`, 30)).toEqual(`export function blah() {};`);
+  });
 });
