@@ -20,6 +20,13 @@ describe('Function Declarations', () => {
         function f(...a) {}
       `);
     });
+    it(`it should handle spread arguments`, () => {
+      expect(transform(dedent`
+        f(...a);
+      `, 80)).toEqual(dedent`
+        f(...a);
+      `);
+    });
   });
   it(`shouldn't wrap lines under the length`, () => {
     expect(transform(`function f() {}`, 20)).toEqual(`function f() {}`);
