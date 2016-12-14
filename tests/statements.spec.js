@@ -5,6 +5,15 @@ import dedent from 'dedent-js';
 import transform from './../index';
 
 describe('Statements', () => {
+  describe('Conformance', () => {
+    it(`should handle throw statements`, () => {
+      expect(transform(dedent`
+        throw error;
+      `, 80)).toEqual(dedent`
+        throw error;
+      `);
+    });
+  });
   describe('If Statements', () => {
     it(`shouldn't wrap if statements if under lenth`, () => {
       expect(transform(`if (a == true) {}`, 20)).toEqual(dedent`
