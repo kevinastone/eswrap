@@ -13,6 +13,17 @@ describe('Statements', () => {
         throw error;
       `);
     });
+    it(`should handle break statements`, () => {
+      expect(transform(dedent`
+        while (true) {
+          break;
+        }
+      `, 80)).toEqual(dedent`
+        while (true) {
+          break;
+        }
+      `);
+    });
   });
   describe('If Statements', () => {
     it(`shouldn't wrap if statements if under length`, () => {
