@@ -6,6 +6,15 @@ import transform from './../index';
 
 describe('Expressions', () => {
   describe('Conformance', () => {
+    describe('Patterns', () => {
+      it(`should handle array patterns`, () => {
+        expect(transform(dedent`
+          var [a, b] = input;
+        `, 80)).toEqual(dedent`
+          var [a, b] = input;
+        `);
+      });
+    });
     describe('Unary Operators', () => {
       it(`should handle delete unary expressions`, () => {
         expect(transform(dedent`
@@ -81,6 +90,25 @@ describe('Expressions', () => {
         function* f() {
           yield value;
         }
+      `);
+    });
+  });
+  describe('Patterns', () => {
+    it(`should handle not split array patterns under length`, () => {
+      expect(transform(dedent`
+        var [a, b] = input;
+      `, 20)).toEqual(dedent`
+        var [a, b] = input;
+      `);
+    });
+    it(`should handle split array patterns at the arguments length`, () => {
+      expect(transform(dedent`
+        var [something, another] = input;
+      `, 20)).toEqual(dedent`
+        var [
+          something,
+          another,
+        ] = input;
       `);
     });
   });
