@@ -19,6 +19,14 @@ describe('Literals', () => {
       expect(transform(`var a = 'hi';`, 20)).toEqual(`var a = 'hi';`);
     });
   });
+  describe('RegexLiterals', () => {
+    it(`shouldn't wrap literals`, () => {
+      expect(transform(`var a = /hi/;`, 20)).toEqual(`var a = /hi/;`);
+    });
+    it(`shouldn't wrap literals with flags`, () => {
+      expect(transform(`var a = /hi/gi;`, 20)).toEqual(`var a = /hi/gi;`);
+    });
+  });
   describe('TemplateLiterals', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform('var a = `hi`;', 20)).toEqual('var a = `hi`;');
