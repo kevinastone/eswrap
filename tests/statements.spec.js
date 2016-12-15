@@ -67,4 +67,20 @@ describe('Statements', () => {
       `);
     });
   });
+  describe('For Statements', () => {
+    it(`shouldn't wrap for statements if under length`, () => {
+      expect(transform(dedent`
+        for (let i = 0; i < 10; i++) {}
+      `, 40)).toEqual(dedent`
+        for (let i = 0; i < 10; i++) {}
+      `);
+    });
+    it(`shouldn't wrap empty for statements if under length`, () => {
+      expect(transform(dedent`
+        for (;;) {}
+      `, 40)).toEqual(dedent`
+        for (;;) {}
+      `);
+    });
+  });
 });
