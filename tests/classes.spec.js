@@ -59,7 +59,7 @@ describe('Classes', () => {
           }
         `);
       });
-      xit(`it should format class constructor with super`, () => {
+      it(`it should format class constructor with super`, () => {
         expect(transform(dedent`
           class Something {
             constructor() {

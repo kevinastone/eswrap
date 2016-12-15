@@ -80,7 +80,7 @@ describe('Expressions', () => {
         );`);
     });
   });
-  xdescribe('Yield Expression', () => {
+  describe('Yield Expression', () => {
     it(`shouldn't wrap lines under the length`, () => {
       expect(transform(dedent`
         function* f() {
