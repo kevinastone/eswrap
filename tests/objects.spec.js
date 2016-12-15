@@ -6,6 +6,22 @@ import transform from './../index';
 
 describe('Objects', () => {
   describe('Conformance', () => {
+    describe('Object Pattern', () => {
+      it(`it should format shorthand object pattern`, () => {
+        expect(transform(dedent`
+          var { a, b } = { a: something, b: another };
+        `, 80)).toEqual(dedent`
+          var { a, b } = { a: something, b: another };
+        `);
+      });
+      it(`it should format longhand object pattern`, () => {
+        expect(transform(dedent`
+          var { a: first, b: second } = { a: something, b: another };
+        `, 80)).toEqual(dedent`
+          var { a: first, b: second } = { a: something, b: another };
+        `);
+      });
+    });
     xdescribe('Object Methods', () => {
       it(`it should format simple object method`, () => {
         expect(transform(dedent`
