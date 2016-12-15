@@ -119,7 +119,7 @@ describe('Classes', () => {
             color;
           }
         `);
-      });      
+      });
       it(`it should format simple properties with values`, () => {
         expect(transform(dedent`
           class Something {
@@ -130,7 +130,7 @@ describe('Classes', () => {
             color = 'red';
           }
         `);
-      });      
+      });
     });
   });
 });
