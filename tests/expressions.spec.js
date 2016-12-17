@@ -93,6 +93,23 @@ describe('Expressions', () => {
       `);
     });
   });
+  describe('Member Expression', () => {
+    it(`shouldn't wrap lines under the length`, () => {
+      expect(transform(dedent`
+        a.b.c();
+      `, 20)).toEqual(dedent`
+        a.b.c();
+      `);
+    });
+    it.only(`should wrap lines over the length at the dot operator`, () => {
+      expect(transform(dedent`
+        another.value.method();
+      `, 20)).toEqual(dedent`
+        another.value
+          .method();
+      `);
+    });
+  });
   describe('Patterns', () => {
     it(`should handle not split array patterns under length`, () => {
       expect(transform(dedent`
