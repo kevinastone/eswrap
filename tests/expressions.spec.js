@@ -101,7 +101,7 @@ describe('Expressions', () => {
         a.b.c();
       `);
     });
-    it.only(`should wrap lines over the length at the dot operator`, () => {
+    it(`should wrap lines over the length at the dot operator`, () => {
       expect(transform(dedent`
         another.value.method();
       `, 20)).toEqual(dedent`

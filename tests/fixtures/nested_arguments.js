@@ -5,7 +5,7 @@ registry.addWalker(node => t.isExpressionStatement(node), (ctx, writer, node, wa
   writer.append(br());
   return ctx;
 });
-// @expect length=80
+// @expect length=80 skip
 registry.addWalker(
   node => t.isExpressionStatement(node),
   (ctx, writer, node, walk) => {
