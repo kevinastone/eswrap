@@ -78,13 +78,13 @@ describe('Flow Types', () => {
       });
     });
   });
-  it(`should should wrap function types at the argument`, () => {
+  it(`should should wrap function types at the assignment`, () => {
     expect(transform(dedent`
       type Callback = (input: number) => boolean;
     `, 20)).toEqual(dedent`
-      type Callback = (
-        input: number,
-      ) => boolean;
+      type Callback =
+        (input: number) =>
+          boolean;
     `);
   });  
 });

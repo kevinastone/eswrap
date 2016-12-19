@@ -33,9 +33,11 @@ describe('Statements', () => {
     });
     it(`should wrap if statements at the binary expressions`, () => {
       expect(transform(`if (something || another || more) {}`, 20)).toEqual(dedent`
-        if (something ||
-          another ||
-          more) {}
+        if (
+          something ||
+            another ||
+            more
+        ) {}
       `);
     });
   });
@@ -47,9 +49,11 @@ describe('Statements', () => {
     });
     it(`should wrap while statements at the binary expressions`, () => {
       expect(transform(`while (something || another || more) {}`, 20)).toEqual(dedent`
-        while (something ||
-          another ||
-          more) {}
+        while (
+          something ||
+            another ||
+            more
+        ) {}
       `);
     });
   });

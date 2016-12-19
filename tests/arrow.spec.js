@@ -26,7 +26,7 @@ describe('Arrow Functions', () => {
       };
     `);
   });
-  it('should wrap block statements', () => {
+  it('should wrap expression statements', () => {
     expect(transform(`(first, second) => calculateValue();`, 30)).toEqual(dedent`
       (first, second) =>
         calculateValue();
