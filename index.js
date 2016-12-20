@@ -1,7 +1,7 @@
 /* @flow */
 
 import { parse } from 'babylon';
-import wrap from './lib/transform';
+import wrap from './lib/index';
 
 export default function(input: string, limit: number): string {
   const ast = parse(input, { sourceType: 'module', plugins: '*' }).program;
