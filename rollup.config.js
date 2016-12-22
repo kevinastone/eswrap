@@ -5,7 +5,7 @@ export default {
   entry: './cli.js',
   dest: 'bin/eswrap.js',
   format: 'cjs',
-  banner: '#!/usr/bin/env node ',
+  banner: '#!/usr/bin/env node',
   plugins: [
     babel({
       babelrc: false,
