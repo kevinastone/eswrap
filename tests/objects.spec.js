@@ -76,4 +76,22 @@ describe('Objects', () => {
       `);
     });
   });
+  describe('Object Arguments', () => {
+    it(`shouldn't wrap object arguments under length`, () => {
+      expect(transform(dedent`
+        func({ a: 1 });
+      `, 30)).toEqual(dedent`
+        func({ a: 1 });
+      `);
+    });
+    it(`should wrap object arguments over length`, () => {
+      expect(transform(dedent`
+        func({ something: value });
+      `, 20)).toEqual(dedent`
+        func({
+          something: value,
+        });
+      `);
+    });
+  });
 });
