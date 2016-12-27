@@ -111,14 +111,14 @@ describe('Expressions', () => {
     });
   });
   describe('Patterns', () => {
-    it(`should handle not split array patterns under length`, () => {
+    it(`should not split array patterns under length`, () => {
       expect(transform(dedent`
         var [a, b] = input;
       `, 20)).toEqual(dedent`
         var [a, b] = input;
       `);
     });
-    it(`should handle split array patterns at the arguments length`, () => {
+    it(`should split array patterns at the arguments length`, () => {
       expect(transform(dedent`
         var [something, another] = input;
       `, 20)).toEqual(dedent`
@@ -126,6 +126,35 @@ describe('Expressions', () => {
           something,
           another,
         ] = input;
+      `);
+    });
+  });
+  describe('Ternary', () => {
+    it(`should not split ternary under length`, () => {
+      expect(transform(dedent`
+        var a = b ? c : d;
+      `, 20)).toEqual(dedent`
+        var a = b ? c : d;
+      `);
+    });
+    it(`should split ternary over length`, () => {
+      expect(transform(dedent`
+        var result = condition ? truthy : falsy;
+      `, 30)).toEqual(dedent`
+        var result = condition
+          ? truthy
+          : falsy;
+      `);
+    });
+    it(`should split nested ternary over length`, () => {
+      expect(transform(dedent`
+        var result = condition ? another ? wanted : secondary : lastly;
+      `, 30)).toEqual(dedent`
+        var result = condition
+          ? another
+            ? wanted
+            : secondary
+          : lastly;
       `);
     });
   });
