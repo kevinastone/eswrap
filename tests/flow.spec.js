@@ -6,7 +6,32 @@ import transform from './../index';
 
 describe('Flow Types', () => {
   describe('Conformance', () => {
-    describe('Types', () => {
+    describe('Import Types', () => {
+      it(`should handle importing types`, () => {
+        expect(transform(dedent`
+          import type { MyType } from 'module';
+        `, 80)).toEqual(dedent`
+          import type { MyType } from 'module';
+        `);
+      });
+    });
+    describe('Function Types', () => {
+      it(`should handle arguments types`, () => {
+        expect(transform(dedent`
+          function a(b: MyType) {}
+        `, 80)).toEqual(dedent`
+          function a(b: MyType) {}
+        `);
+      });
+      it(`should handle return types`, () => {
+        expect(transform(dedent`
+          function a(b): MyType {}
+        `, 80)).toEqual(dedent`
+          function a(b): MyType {}
+        `);
+      });
+    });
+    describe('Declare Types', () => {
       it(`should handle number type aliases`, () => {
         expect(transform(dedent`
           type T = number;
