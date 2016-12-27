@@ -24,6 +24,24 @@ describe('Statements', () => {
         }
       `);
     });
+    it(`should handle try-catch statements`, () => {
+      expect(transform(dedent`
+        try {}
+        catch (ex) {}
+      `, 80)).toEqual(dedent`
+        try {}
+        catch (ex) {}
+      `);
+    });
+    it(`should handle try-finally statements`, () => {
+      expect(transform(dedent`
+        try {}
+        finally {}
+      `, 80)).toEqual(dedent`
+        try {}
+        finally {}
+      `);
+    });
   });
   describe('If Statements', () => {
     it(`shouldn't wrap if statements if under length`, () => {
