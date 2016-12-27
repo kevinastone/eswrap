@@ -85,6 +85,17 @@ describe('Classes', () => {
           }
         `);
       });
+      it(`it should format symbolic class method`, () => {
+        expect(transform(dedent`
+          class Something {
+            * [Symbol.iterator](something, another) {}
+          }
+        `, 80)).toEqual(dedent`
+          class Something {
+            * [Symbol.iterator](something, another) {}
+          }
+        `);
+      });
       it(`it should format simple class property getter`, () => {
         expect(transform(dedent`
           class Something {
