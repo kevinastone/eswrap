@@ -28,6 +28,13 @@ describe('Flow Types', () => {
           type T = Something;
         `);
       });
+      it(`should handle nullable type aliases`, () => {
+        expect(transform(dedent`
+          type T = ?Something;
+        `, 80)).toEqual(dedent`
+          type T = ?Something;
+        `);
+      });
       it(`should handle tuple type aliases`, () => {
         expect(transform(dedent`
           type T = [number, number];
