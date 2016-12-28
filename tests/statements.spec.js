@@ -49,6 +49,36 @@ describe('Statements', () => {
         if (a == true) {}
       `);
     });
+    it(`shouldn't wrap if-else statements if under length`, () => {
+      expect(transform(dedent`
+        if (a == true) {
+          true;
+        } else {
+          false;
+        }
+      `, 30)).toEqual(dedent`
+        if (a == true) {
+          true;
+        } else {
+          false;
+        }
+      `);
+    });
+    it(`shouldn't wrap if-elseif statements if under length`, () => {
+      expect(transform(dedent`
+        if (a == true) {
+          true;
+        } else if (a == false) {
+          false;
+        } else {}
+      `, 30)).toEqual(dedent`
+        if (a == true) {
+          true;
+        } else if (a == false) {
+          false;
+        } else {}
+      `);
+    });
     it(`should wrap if statements at the binary expressions`, () => {
       expect(transform(`if (something || another || more) {}`, 20)).toEqual(dedent`
         if (
