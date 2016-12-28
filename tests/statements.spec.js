@@ -75,7 +75,7 @@ describe('Statements', () => {
       `);
     });
   });
-  xdescribe('For of Statements', () => {
+  describe('For of Statements', () => {
     it(`shouldn't wrap for-of statements if under length`, () => {
       expect(transform(`for (const a of []) {}`, 30)).toEqual(dedent`
         for (const a of []) {}
