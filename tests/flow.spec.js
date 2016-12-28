@@ -124,6 +124,14 @@ describe('Flow Types', () => {
       });
     });
   });
+  it(`should should wrap return types`, () => {
+    expect(transform(dedent`
+      function func(): MyLongType {}
+    `, 20)).toEqual(dedent`
+      function func()
+        : MyLongType {}
+    `);
+  });  
   it(`should should wrap function types at the assignment`, () => {
     expect(transform(dedent`
       type Callback = (input: number) => boolean;

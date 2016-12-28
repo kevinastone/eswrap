@@ -12,7 +12,8 @@ describe('Fixtures', () => {
       const input = fixture.input.toString();
       for (const expected of fixture.expected) {
         const length = parseInt(expected.directive.attributes.length || "80", 10);
-        const itHelper = 'skip' in expected.directive.attributes ? xit : it;
+        let itHelper = 'skip' in expected.directive.attributes ? xit : it;
+        itHelper = 'only' in expected.directive.attributes ? itHelper.only : itHelper;
         itHelper('should match expected output', () => {
           expect(transform(input, length).trim()).toEqual(expected.toString().trim());
         });

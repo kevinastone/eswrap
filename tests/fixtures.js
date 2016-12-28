@@ -68,7 +68,7 @@ function* readLines(data) {
 }
 
 function parseDirective(line: string): ?Directive {
-  const match = /^\/\/\s*@(\w+)\b(.*)$/g.exec(line);
+  const match = /^\/\/\s*@(\w+)\b(.*)(?:#.*)?$/g.exec(line);
   if (!match) {
     return match;
   }
