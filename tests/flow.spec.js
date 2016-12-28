@@ -23,6 +23,20 @@ describe('Flow Types', () => {
           function a(b: MyType) {}
         `);
       });
+      it(`should handle rest arguments types`, () => {
+        expect(transform(dedent`
+          function a(...b: MyType) {}
+        `, 80)).toEqual(dedent`
+          function a(...b: MyType) {}
+        `);
+      });
+      it(`should handle generic parameters types`, () => {
+        expect(transform(dedent`
+          function a<T>(b: T) {}
+        `, 80)).toEqual(dedent`
+          function a<T>(b: T) {}
+        `);
+      });
       it(`should handle return types`, () => {
         expect(transform(dedent`
           function a(b): MyType {}
