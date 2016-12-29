@@ -60,6 +60,34 @@ describe('Flow Types', () => {
           type T = void;
         `);
       });
+      it(`should handle any type aliases`, () => {
+        expect(transform(dedent`
+          type T = any;
+        `, 80)).toEqual(dedent`
+          type T = any;
+        `);
+      });
+      it(`should handle literal true type aliases`, () => {
+        expect(transform(dedent`
+          type T = true;
+        `, 80)).toEqual(dedent`
+          type T = true;
+        `);
+      });
+      it(`should handle literal null type aliases`, () => {
+        expect(transform(dedent`
+          type T = null;
+        `, 80)).toEqual(dedent`
+          type T = null;
+        `);
+      });
+      it(`should handle literal false type aliases`, () => {
+        expect(transform(dedent`
+          type T = false;
+        `, 80)).toEqual(dedent`
+          type T = false;
+        `);
+      });
       it(`should handle generic type aliases`, () => {
         expect(transform(dedent`
           type T = Something;
