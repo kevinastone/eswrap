@@ -30,5 +30,12 @@ describe('Comments', () => {
         var a = 1;
       `);
     });
+    it(`shouldn't wrap trailing line comments`, () => {
+      expect(transform(dedent`
+        var a = 1; // something
+      `, 30)).toEqual(dedent`
+        var a = 1; // something
+      `);
+    });
   });
 });
