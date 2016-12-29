@@ -46,48 +46,24 @@ describe('Flow Types', () => {
       });
     });
     describe('Declare Types', () => {
-      it(`should handle number type aliases`, () => {
-        expect(transform(dedent`
-          type T = number;
-        `, 80)).toEqual(dedent`
-          type T = number;
-        `);
-      });
-      it(`should handle void type aliases`, () => {
-        expect(transform(dedent`
-          type T = void;
-        `, 80)).toEqual(dedent`
-          type T = void;
-        `);
-      });
-      it(`should handle any type aliases`, () => {
-        expect(transform(dedent`
-          type T = any;
-        `, 80)).toEqual(dedent`
-          type T = any;
-        `);
-      });
-      it(`should handle literal true type aliases`, () => {
-        expect(transform(dedent`
-          type T = true;
-        `, 80)).toEqual(dedent`
-          type T = true;
-        `);
-      });
-      it(`should handle literal null type aliases`, () => {
-        expect(transform(dedent`
-          type T = null;
-        `, 80)).toEqual(dedent`
-          type T = null;
-        `);
-      });
-      it(`should handle literal false type aliases`, () => {
-        expect(transform(dedent`
-          type T = false;
-        `, 80)).toEqual(dedent`
-          type T = false;
-        `);
-      });
+      for (const typ of [
+        'number',
+        'void',
+        'string',
+        'null',
+        'any',
+        'boolean',
+        'true',
+        'false'
+      ]) {
+        it(`should handle ${typ} type aliases`, () => {
+          expect(transform(dedent`
+            type T = ${typ};
+          `, 80)).toEqual(dedent`
+            type T = ${typ};
+          `);
+        });
+      }
       it(`should handle generic type aliases`, () => {
         expect(transform(dedent`
           type T = Something;
