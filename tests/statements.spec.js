@@ -6,14 +6,14 @@ import transform from './../index';
 
 describe('Statements', () => {
   describe('Conformance', () => {
-    it(`should handle throw statements`, () => {
+    it(`should handle \`throw\``, () => {
       expect(transform(dedent`
         throw error;
       `, 80)).toEqual(dedent`
         throw error;
       `);
     });
-    it(`should handle break statements`, () => {
+    it(`should handle \`break\``, () => {
       expect(transform(dedent`
         while (true) {
           break;
@@ -24,7 +24,7 @@ describe('Statements', () => {
         }
       `);
     });
-    it(`should handle try-catch statements`, () => {
+    it(`should handle \`try/catch\``, () => {
       expect(transform(dedent`
         try {}
         catch (ex) {}
@@ -33,7 +33,7 @@ describe('Statements', () => {
         catch (ex) {}
       `);
     });
-    it(`should handle try-finally statements`, () => {
+    it(`should handle \`try/finally\``, () => {
       expect(transform(dedent`
         try {}
         finally {}
@@ -44,12 +44,12 @@ describe('Statements', () => {
     });
   });
   describe('If Statements', () => {
-    it(`shouldn't wrap if statements if under length`, () => {
+    it(`shouldn't wrap \`if\` when under length`, () => {
       expect(transform(`if (a == true) {}`, 20)).toEqual(dedent`
         if (a == true) {}
       `);
     });
-    it(`shouldn't wrap if-else statements if under length`, () => {
+    it(`shouldn't wrap \`if/else\` when under length`, () => {
       expect(transform(dedent`
         if (a == true) {
           true;
@@ -64,7 +64,7 @@ describe('Statements', () => {
         }
       `);
     });
-    it(`shouldn't wrap if-elseif statements if under length`, () => {
+    it(`shouldn't wrap \`if/elseif\` when under length`, () => {
       expect(transform(dedent`
         if (a == true) {
           true;
@@ -79,7 +79,7 @@ describe('Statements', () => {
         } else {}
       `);
     });
-    it(`should wrap if statements at the binary expressions`, () => {
+    it(`should wrap \`if\` at binary expressions`, () => {
       expect(transform(`if (something || another || more) {}`, 20)).toEqual(dedent`
         if (
           something ||
@@ -90,12 +90,12 @@ describe('Statements', () => {
     });
   });
   describe('While Statements', () => {
-    it(`shouldn't wrap while statements while under length`, () => {
+    it(`shouldn't wrap \`while\` if under length`, () => {
       expect(transform(`while (a == true) {}`, 20)).toEqual(dedent`
         while (a == true) {}
       `);
     });
-    it(`should wrap while statements at the binary expressions`, () => {
+    it(`should wrap \`while\` at binary expressions`, () => {
       expect(transform(`while (something || another || more) {}`, 20)).toEqual(dedent`
         while (
           something ||
@@ -105,13 +105,13 @@ describe('Statements', () => {
       `);
     });
   });
-  describe('For of Statements', () => {
-    it(`shouldn't wrap for-of statements if under length`, () => {
+  describe('For-of Statements', () => {
+    it(`shouldn't wrap \`for-of\` if under length`, () => {
       expect(transform(`for (const a of []) {}`, 30)).toEqual(dedent`
         for (const a of []) {}
       `);
     });
-    it(`should wrap if statements at the binary expressions`, () => {
+    it(`should wrap \`for-of\` at binary expressions`, () => {
       expect(transform(`for (const c of iter) {}`, 20)).toEqual(dedent`
         for (
           const c of iter
@@ -120,27 +120,18 @@ describe('Statements', () => {
     });
   });
   describe('For Statements', () => {
-    it(`shouldn't wrap for statements if under length`, () => {
+    it(`shouldn't wrap \`for\` if under length`, () => {
       expect(transform(dedent`
         for (let i = 0; i < 10; i++) {}
       `, 40)).toEqual(dedent`
         for (let i = 0; i < 10; i++) {}
       `);
     });
-    it(`shouldn't wrap empty for statements if under length`, () => {
+    it(`shouldn't wrap empty \`for\` loops if under length`, () => {
       expect(transform(dedent`
         for (;;) {}
       `, 40)).toEqual(dedent`
         for (;;) {}
-      `);
-    });
-  });
-  describe('For Statements', () => {
-    it(`shouldn't wrap for statements if under length`, () => {
-      expect(transform(dedent`
-        for (let i = 0; i < 10; i++) {}
-      `, 40)).toEqual(dedent`
-        for (let i = 0; i < 10; i++) {}
       `);
     });
   });

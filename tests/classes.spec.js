@@ -7,28 +7,28 @@ import transform from './../index';
 describe('Classes', () => {
   describe('Conformance', () => {
     describe('Declaration', () => {
-      it(`it should format simple class declarations`, () => {
+      it(`should format a basic class`, () => {
         expect(transform(dedent`
           class Something {}
         `, 80)).toEqual(dedent`
           class Something {}
         `);
       });
-      it(`it should format simple class declaration with super-classes`, () => {
+      it(`should format a basic subclass`, () => {
         expect(transform(dedent`
           class Something extends Another {}
         `, 80)).toEqual(dedent`
           class Something extends Another {}
         `);
       });
-      it(`it should format simple class expressions`, () => {
+      it(`should format a class expression`, () => {
         expect(transform(dedent`
           const Klass = class {};
         `, 80)).toEqual(dedent`
           const Klass = class {};
         `);
       });
-      it(`it should format named class expressions`, () => {
+      it(`should format a named class expression`, () => {
         expect(transform(dedent`
           const Klass = class Klass {};
         `, 80)).toEqual(dedent`
@@ -37,7 +37,7 @@ describe('Classes', () => {
       });
     });
     describe('Class Methods', () => {
-      it(`it should format simple class constructor`, () => {
+      it(`should format a basic constructor`, () => {
         expect(transform(dedent`
           class Something {
             constructor() {}
@@ -48,7 +48,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format class constructor with arguments`, () => {
+      it(`should format a constructor with an argument list`, () => {
         expect(transform(dedent`
           class Something {
             constructor(something, another) {}
@@ -59,7 +59,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format class constructor with super`, () => {
+      it(`should format a constructor that uses the \`super\` keyword`, () => {
         expect(transform(dedent`
           class Something {
             constructor() {
@@ -74,7 +74,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format simple class method`, () => {
+      it(`should format a basic method`, () => {
         expect(transform(dedent`
           class Something {
             method(something, another) {}
@@ -85,7 +85,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format symbolic class method`, () => {
+      it(`should format a Symbol-keyed generator method`, () => {
         expect(transform(dedent`
           class Something {
             * [Symbol.iterator](something, another) {}
@@ -96,7 +96,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format simple class property getter`, () => {
+      it(`should format a property getter`, () => {
         expect(transform(dedent`
           class Something {
             get property() {}
@@ -107,7 +107,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format simple class property setter`, () => {
+      it(`should format a property setter`, () => {
         expect(transform(dedent`
           class Something {
             set property(value) {}
@@ -120,7 +120,7 @@ describe('Classes', () => {
       });
     });
     describe('Class Properties', () => {
-      it(`it should format simple properties without values`, () => {
+      it(`should format a property declaration without a default value`, () => {
         expect(transform(dedent`
           class Something {
             color;
@@ -131,7 +131,7 @@ describe('Classes', () => {
           }
         `);
       });
-      it(`it should format simple properties with values`, () => {
+      it(`should format a property declaration that defines a default value`, () => {
         expect(transform(dedent`
           class Something {
             color = 'red';

@@ -4,22 +4,22 @@ import 'chai';
 import transform from './../index';
 
 describe('Literals', () => {
-  describe('NumericLiterals', () => {
+  describe('Numbers', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform(`var a = 20;`, 20)).toEqual(`var a = 20;`);
     });
   });
-  describe('BooleanLiterals', () => {
+  describe('Boolean values', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform(`var a = true;`, 20)).toEqual(`var a = true;`);
     });
   });
-  describe('StringLiterals', () => {
+  describe('Strings', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform(`var a = 'hi';`, 20)).toEqual(`var a = 'hi';`);
     });
   });
-  describe('RegexLiterals', () => {
+  describe('RegExp literals', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform(`var a = /hi/;`, 20)).toEqual(`var a = /hi/;`);
     });
@@ -27,7 +27,7 @@ describe('Literals', () => {
       expect(transform(`var a = /hi/gi;`, 20)).toEqual(`var a = /hi/gi;`);
     });
   });
-  describe('TemplateLiterals', () => {
+  describe('Template literals', () => {
     it(`shouldn't wrap literals`, () => {
       expect(transform('var a = `hi`;', 20)).toEqual('var a = `hi`;');
     });

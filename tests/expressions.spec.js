@@ -16,49 +16,49 @@ describe('Expressions', () => {
       });
     });
     describe('Unary Operators', () => {
-      it(`should handle delete unary expressions`, () => {
+      it(`should handle \`delete\``, () => {
         expect(transform(dedent`
           delete a.b;
         `, 80)).toEqual(dedent`
           delete a.b;
         `);
       });
-      it(`should handle typeof unary expressions`, () => {
+      it(`should handle \`typeof\``, () => {
         expect(transform(dedent`
           typeof a.b;
         `, 80)).toEqual(dedent`
           typeof a.b;
         `);
       });
-      it(`should handle void unary expressions`, () => {
+      it(`should handle \`void\``, () => {
         expect(transform(dedent`
           void a.b;
         `, 80)).toEqual(dedent`
           void a.b;
         `);
       });
-      it(`should handle prefix unary expressions`, () => {
+      it(`should handle prefix operators`, () => {
         expect(transform(dedent`
           var a = !true;
         `, 80)).toEqual(dedent`
           var a = !true;
         `);
       });
-      it(`should handle prefix negation expressions`, () => {
+      it(`should handle negated prefix operators`, () => {
         expect(transform(dedent`
           var a = -x;
         `, 80)).toEqual(dedent`
           var a = -x;
         `);
       });
-      it(`should handle prefis update expressions`, () => {
+      it(`should handle prefix increments`, () => {
         expect(transform(dedent`
           var a = ++count;
         `, 80)).toEqual(dedent`
           var a = ++count;
         `);
       });
-      it(`should handle suffix update expressions`, () => {
+      it(`should handle postfix increments`, () => {
         expect(transform(dedent`
           var a = count++;
         `, 80)).toEqual(dedent`
@@ -129,15 +129,15 @@ describe('Expressions', () => {
       `);
     });
   });
-  describe('Ternary', () => {
-    it(`should not split ternary under length`, () => {
+  describe('Ternary operators', () => {
+    it(`should not split ternary operators under length`, () => {
       expect(transform(dedent`
         var a = b ? c : d;
       `, 20)).toEqual(dedent`
         var a = b ? c : d;
       `);
     });
-    it(`should split ternary over length`, () => {
+    it(`should split ternary operators over length`, () => {
       expect(transform(dedent`
         var result = condition ? truthy : falsy;
       `, 30)).toEqual(dedent`
@@ -146,7 +146,7 @@ describe('Expressions', () => {
           : falsy;
       `);
     });
-    it(`should split nested ternary over length`, () => {
+    it(`should split nested ternary operators over length`, () => {
       expect(transform(dedent`
         var result = condition ? another ? wanted : secondary : lastly;
       `, 30)).toEqual(dedent`

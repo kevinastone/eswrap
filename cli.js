@@ -8,7 +8,7 @@ const DEFAULT_LINE_LENGTH = 80;
 
 program
   .version(version)
-  .description('format ecmascript code')
+  .description('format ECMAScript code')
   .option(
     '-l, --limit <cols>',
     `line limit (defaults to ${DEFAULT_LINE_LENGTH})`,

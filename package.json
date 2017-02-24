@@ -1,7 +1,7 @@
 {
   "name": "eswrap",
   "version": "0.0.2",
-  "description": "Wrap ecmascript code to retain formating",
+  "description": "Wrap ECMAScript source to fit within a column count.",
   "main": "index.js",
   "bin": {
     "eswrap": "bin/eswrap.js"

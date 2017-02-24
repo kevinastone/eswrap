@@ -6,15 +6,15 @@ import transform from './../index';
 
 describe('Objects', () => {
   describe('Conformance', () => {
-    describe('Object Pattern', () => {
-      it(`it should format shorthand object pattern`, () => {
+    describe('Destructured Assignment', () => {
+      it(`should format shorthand destructuring`, () => {
         expect(transform(dedent`
           var { a, b } = { a: something, b: another };
         `, 80)).toEqual(dedent`
           var { a, b } = { a: something, b: another };
         `);
       });
-      it(`it should format longhand object pattern`, () => {
+      it(`should format longhand destructuring`, () => {
         expect(transform(dedent`
           var { a: first, b: second } = { a: something, b: another };
         `, 80)).toEqual(dedent`
@@ -23,7 +23,7 @@ describe('Objects', () => {
       });
     });
     xdescribe('Object Methods', () => {
-      it(`it should format simple object method`, () => {
+      it(`should format simple methods`, () => {
         expect(transform(dedent`
           var myObj = {
             method(something, another) {}
@@ -34,7 +34,7 @@ describe('Objects', () => {
           }
         `);
       });
-      it(`it should format simple object property getter`, () => {
+      it(`should format property getters`, () => {
         expect(transform(dedent`
           var myObj = {
             get property() {}
@@ -45,7 +45,7 @@ describe('Objects', () => {
           }
         `);
       });
-      it(`it should format simple object property setter`, () => {
+      it(`should format property setters`, () => {
         expect(transform(dedent`
           var myObj = {
             set property(value) {}
