@@ -7,21 +7,21 @@ import transform from './../index';
 describe('Functions', () => {
   describe('Conformance', () => {
     describe('Declarations', () => {
-      it(`it should handle default arguments`, () => {
+      it(`should handle default arguments`, () => {
         expect(transform(dedent`
           function f(a = 1, b = 2) {}
         `, 80)).toEqual(dedent`
           function f(a = 1, b = 2) {}
         `);
       });
-      it(`it should handle rest arguments`, () => {
+      it(`should handle rest arguments`, () => {
         expect(transform(dedent`
           function f(...a) {}
         `, 80)).toEqual(dedent`
           function f(...a) {}
         `);
       });
-      it(`it should handle spread arguments`, () => {
+      it(`should handle spread arguments`, () => {
         expect(transform(dedent`
           f(...a);
         `, 80)).toEqual(dedent`
@@ -30,21 +30,21 @@ describe('Functions', () => {
       });
     });
     describe('Expressions', () => {
-      it(`it should handle expresions`, () => {
+      it(`should handle expressions`, () => {
         expect(transform(dedent`
           func(function(a, b) {});
         `, 80)).toEqual(dedent`
           func(function(a, b) {});
         `);
       });
-      it(`it should handle expresions with other parameters`, () => {
+      it(`should handle expressions with other parameters`, () => {
         expect(transform(dedent`
           func(function(a, b) {}, another);
         `, 80)).toEqual(dedent`
           func(function(a, b) {}, another);
         `);
       });
-      it(`it should handle expresions with bodies`, () => {
+      it(`should handle expressions with bodies`, () => {
         expect(transform(dedent`
           func(function(a, b) {
             return false;
