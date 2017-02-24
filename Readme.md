@@ -10,9 +10,9 @@ It attempts to reformat a code block to fit within a specified column count:
 echo "[variable1, variable2, variable3];" | eswrap --limit 20
 
 # Output:
-'[
+[
   variable1,
   variable2,
   variable3,
-];'
+];
 ```
